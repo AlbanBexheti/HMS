@@ -4,7 +4,6 @@ public class Guest {
     private String guestLastname;
     private String guestEmail;
 
-    //Default Constructor
     public Guest() {
         this.guestId = 0;
         this.guestName = " ";
@@ -12,7 +11,6 @@ public class Guest {
         this.guestEmail = " ";
     }
 
-    //Paramaetrized Constructor
     public Guest(int guestId, String guestName, String guestLastname, String guestEmail) {
         this.guestId = guestId;
         this.guestName = guestName;
@@ -20,7 +18,6 @@ public class Guest {
         this.guestEmail = guestEmail;
     }
 
-    //Getter Method
     public int getGuestId() {
         return guestId;
     }

@@ -1,37 +1,66 @@
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
-public class Room {
-
+public class Room implements Bookable {
     private int roomId;
     private String roomType;
     private BigDecimal nightlyRate;
     private boolean isAvailable;
 
-    //Default Constructor
-    public Room(){
+    private LocalDate bookedStartDate;
+    private LocalDate bookedEndDate;
+
+
+    public Room() {
         this.roomId = 0;
         this.roomType = "Standard";
         this.nightlyRate = new BigDecimal("100.00");
         this.isAvailable = true;
+        this.bookedStartDate = null;
+        this.bookedEndDate = null;
     }
 
-    //Parametrized Constructor
     public Room(int roomId, String roomType, BigDecimal nightlyRate) {
         this.roomId = roomId;
         this.roomType = roomType;
         this.nightlyRate = nightlyRate;
         this.isAvailable = true;
+        this.bookedStartDate = null;
+        this.bookedEndDate = null;
     }
 
-    //Convenience constructor for double values (converts to BigDecimal)
     public Room(int roomId, String roomType, double nightlyRate) {
         this.roomId = roomId;
         this.roomType = roomType;
         this.nightlyRate = BigDecimal.valueOf(nightlyRate);
         this.isAvailable = true;
+        this.bookedStartDate = null;
+        this.bookedEndDate = null;
     }
 
-    //Getter method
+    @Override
+    public boolean isAvailable(LocalDate startDate, LocalDate endDate) {
+        if (bookedStartDate == null || bookedEndDate == null) {
+            return true;
+        }
+        return endDate.isBefore(bookedStartDate) || startDate.isAfter(bookedEndDate) ||
+                startDate.isEqual(bookedEndDate) || endDate.isEqual(bookedStartDate);
+    }
+
+    @Override
+    public void markAsBooked(LocalDate startDate, LocalDate endDate) {
+        this.bookedStartDate = startDate;
+        this.bookedEndDate = endDate;
+        this.isAvailable = false;
+    }
+
+    @Override
+    public void cancelBooking(LocalDate startDate, LocalDate endDate) {
+        this.bookedStartDate = null;
+        this.bookedEndDate = null;
+        this.isAvailable = true;
+    }
+
     public int getRoomId() {
         return roomId;
     }
@@ -48,7 +77,6 @@ public class Room {
         return isAvailable;
     }
 
-    //Setter method for the availability
     public void setAvailable(boolean available) {
         this.isAvailable = available;
     }

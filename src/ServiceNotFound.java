@@ -1,7 +1,9 @@
-package PACKAGE_NAME;
+public class ServiceNotFound extends Exception {
+    public ServiceNotFound() {
+        super("Service not found");
+    }
 
-public class ServiceNotFound extends RuntimeException {
-  public ServiceNotFound(String message) {
-    super(message);
-  }
+    public ServiceNotFound(String message) {
+        super(message);
+    }
 }

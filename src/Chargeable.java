@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
+import java.math.BigDecimal;
 
 public interface Chargeable {
+    BigDecimal getCost();
 }

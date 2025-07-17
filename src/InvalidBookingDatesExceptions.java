@@ -1,7 +1,9 @@
-package PACKAGE_NAME;
+public class InvalidBookingDatesExceptions extends Exception {
+    public InvalidBookingDatesExceptions() {
+        super("Check-out date must be after check-in date");
+    }
 
-public class InvalidBookingDatesExceptions extends RuntimeException {
-  public InvalidBookingDatesExceptions(String message) {
-    super(message);
-  }
+    public InvalidBookingDatesExceptions(String message) {
+        super(message);
+    }
 }

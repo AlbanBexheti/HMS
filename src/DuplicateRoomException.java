@@ -1,7 +1,5 @@
-package PACKAGE_NAME;
-
-public class DuplicateRoomException extends RuntimeException {
-  public DuplicateRoomException(String message) {
-    super(message);
-  }
+public class DuplicateRoomException extends Exception {
+    public DuplicateRoomException(String message) {
+        super(message);
+    }
 }
